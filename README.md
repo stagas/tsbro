@@ -2,6 +2,16 @@
 
 TypeScript for the Browser. No tooling, no build step, simply works.
 
+## Why?
+
+TypeScript is still second-class citizen with regards to browser adoption, there is a proposal to fix that, but until then we have to use tooling, bundlers, build steps that are an impediment for when you want to quickly create a short demo or PoC. There are ways to run TypeScript code but it can't import other files or make use of remote packages.
+
+**tsbro** solves this by completely bypassing the browser's import system using synchronous XHR and a sophisticated ESM-to-CJS transpiler so that synchronous `require` is used everywhere:
+
+```
+sync xhr fetch ts code -> transpile to js -> convert esm to cjs -> eval
+```
+
 ## Usage
 
 ```html
@@ -12,7 +22,7 @@ TypeScript for the Browser. No tooling, no build step, simply works.
 <head>
   <title>Tsbro - TypeScript for the Browser</title>
 
-  <!-- Only the `tsbro` import is needed, but here we should how it is used with a package. -->
+  <!-- Only the `tsbro` import is needed, but here we show how it is used alongside a package. -->
   <script type="importmap">
     {
       "imports": {
@@ -26,12 +36,12 @@ TypeScript for the Browser. No tooling, no build step, simply works.
 <body>
   <div id="app"></div>
 
-  <!-- Require step: Registers the module globally and runs scripts. -->
+  <!-- Register the module globally and run scripts. -->
   <script type="module">
     import { register } from 'tsbro'
 
     register({
-      jsx: 'preact', // The jsx we want to use.
+      jsx: 'preact', // The JSX pragma we want to use.
     })
   </script>
 
@@ -50,6 +60,34 @@ TypeScript for the Browser. No tooling, no build step, simply works.
 
 </html>
 ```
+
+## Caveats
+
+- *Problem:* TypeScript complaining it can't find types for modules, as we never install anything.
+
+- *Solution:* Create an ambient `env.d.ts` file:
+```ts
+declare module '*'
+```
+
+- *Problem:* Stack traces are hard to read - because we transpile and eval code there are no filenames and the linecols become a mess.
+- *Solution:* None yet.
+
+## Suggested `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  }
+}
+```
+
+## Support
+
+<a href="https://www.buymeacoffee.com/stagas" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ## License
 
