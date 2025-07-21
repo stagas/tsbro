@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tsbro - TypeScript for the Browser</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "tsbro": "./tsbro.js",
+        "preact": "https://esm.sh/preact",
+        "preact/hooks": "https://esm.sh/preact/hooks",
+        "preact/jsx-runtime": "https://esm.sh/preact/jsx-runtime",
+        "confetti": "https://esm.sh/canvas-confetti"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import { register } from 'tsbro'
+
+    register({
+      jsx: 'preact',
+    })
+  </script>
+
+  <script type="text/tsx">
+    import { render } from 'preact'
+    import { App } from './App.tsx'
+
+    render(
+      <App />,
+      document.getElementById('app') as HTMLElement,
+    )
+  </script>
+</body>
+
+</html>

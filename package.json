@@ -1,0 +1,20 @@
+{
+  "name": "tsbro",
+  "version": "1.0.0",
+  "description": "TypeScript for the Browser",
+  "main": "tsbro.js",
+  "scripts": {
+    "test": "echo ok"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stagas/tsbro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stagas/tsbro/issues"
+  },
+  "homepage": "https://github.com/stagas/tsbro#readme"
+}
