@@ -20,7 +20,7 @@ sync xhr fetch ts code -> transpile to js -> convert esm to cjs -> eval
 <html lang="en">
 
 <head>
-  <title>Tsbro - TypeScript for the Browser</title>
+  <title>tsbro - TypeScript for the Browser</title>
 
   <!-- Only the `tsbro` import is needed, but here we show how it is used alongside a package. -->
   <script type="importmap">
