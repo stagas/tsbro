@@ -4,7 +4,7 @@ TypeScript for the Browser. No tooling, no build step, simply works.
 
 ## Why?
 
-TypeScript is still second-class citizen with regards to browser adoption, there is a proposal to fix that, but until then we have to use tooling, bundlers, build steps that are an impediment for when you want to quickly create a short demo or PoC. There are ways to run TypeScript code but it can't import other files or make use of remote packages.
+TypeScript is still second-class citizen with regards to browser adoption, [there is a proposal to fix that](https://devblogs.microsoft.com/typescript/a-proposal-for-type-syntax-in-javascript/), but until then we have to use tooling, bundlers, build steps that are an impediment for when you want to quickly create a short demo or PoC. There are ways to run TypeScript code but it can't import other files or make use of remote packages.
 
 **tsbro** solves this by completely bypassing the browser's import system using synchronous XHR and a sophisticated ESM-to-CJS transpiler so that synchronous `require` is used everywhere:
 
